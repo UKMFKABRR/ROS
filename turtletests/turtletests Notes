@@ -1,0 +1,65 @@
+*** Nodes (Node is an executable file within a ROS package)
+/*Nodes can:
+- publish or subscribe to opic
+- provide or use a Service
+*/
+Rosrun allows you to use the package name to directly run a node within a package: rosrun [package_name] [node_name]
+- roscore
+- rosrun turtlesim turtlesim_node
+
+In a new terminal:
+- rosnode list
+
+rosnode info /turtlesim
+
+*** Topics
+The NODES are communicating with each other over a ROS TOPIC
+- roscore
+- rosrun turtlesim turtlesim_node
+- rosrun turtlesim turtle_teleop_key
+- rosrun rqt_graph rqt_graph
+
+Now we can see that /teleop_turtle Node is communicating with /turtlesim Node via Topic named /turtle1/cmd_vel on the graph 
+
+* To see the data published on a topic: /turtle1/cmd_vel we use "echo" command
+- rostopic echo /turtle1/cmd_vel
+
+* To see the list of topics to publish to and subscribe to and their type. 
+- rostopic list -v
+
+*** Messages
+Getting the message type
+- rostopic type /turtle1/cmd_vel
+
+Getting the details of the message using rosmsg: 
+- rosmsg show geometry_msgs/Twist
+
+Publishes data on to a topic currently advertised
+- rostopic pub -1 /turtle1/cmd_vel geometry_msgs/Twist -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, 1.8]'
+This command will send a single message to turtlesim (topic /turtle1/cmd_vel) telling it to move with an linear velocity of 2.0, and an angular velocity of 1.8. A geometry_msgs/Twist msg has two vectors of three floating point elements each: linear and angular. In this case, '[2.0, 0.0, 0.0]' becomes the linear value with x=2.0, y=0.0, and z=0.0, and '[0.0, 0.0, 1.8]' is the angular value with x=0.0, y=0.0, and z=1.8.
+
+We can publish a steady stream of commands using rostopic "pub -r" command
+- rostopic pub /turtle1/cmd_vel geometry_msgs/Twist -r 1 -- '[2.0, 0.0, 0.0]' '[0.0, 0.0, -1.8]'
+
+*** Services and Parameters
+Services allow nodes to send a request and receive a response. 
+-rosservice list         print information about active services
+-rosservice call         call the service with the provided args
+-rosservice type         print service type
+-rosservice find         find services by service type
+-rosservice uri          print service ROSRPC uri
+
+Print service type for the service called "spawn"
+-rosservice type /spawn | rossrv show
+Spawn a new turtle at a given location and orientation
+-rosservice call /spawn 2 2 0.2 "turtle2"
+-rostopic pub /turtle2/cmd_vel geometry_msgs/Twist -r 1 -- '[3.0, 0.0, 0.0]' '[0.0, 0.0, 2.0]'
+
+*** Example Scripts:
+bash service_example1.sh 
+
+
+
+
+
+
