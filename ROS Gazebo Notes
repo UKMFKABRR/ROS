@@ -1,0 +1,26 @@
+1. Clone Git repo with basic RRBot code
+- cd ~/catkin_ws/src/ROS
+- git clone https://github.com/ros-simulation/gazebo_ros_demos.git
+2. Building a catkin workspace and sourcing the setup file
+- cd ~/catkin_ws
+- catkin_make
+
+Running Sample example:
+In current terminal (Rviz)
+- cd ~/catkin_ws
+- source ./devel/setup.bash
+- roslaunch rrbot_description rrbot_rviz.launch
+
+In a new terminal (Gazebo):
+- cd ~/catkin_ws
+- source ./devel/setup.bash
+- roslaunch rrbot_gazebo rrbot_world.launch
+
+In a new terminal (ROS Control):
+- cd ~/catkin_ws
+- source ./devel/setup.bash
+- roslaunch rrbot_control rrbot_control.launch
+
+Example of Moving Joints (Gazebo):
+rostopic pub /rrbot/joint1_position_controller/command std_msgs/Float64 "data: 1.2"
+rostopic pub /rrbot/joint2_position_controller/command std_msgs/Float64 "data: -0.9"
