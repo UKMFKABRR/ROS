@@ -21,7 +21,6 @@ def rrarm_joint_positions_publisher():
 	#While loop to have joints follow the established trajectory, when rospy is not shutdown.
 	i = 0
 	while not rospy.is_shutdown():
-
 		#Sine and cosine movement
 		sine_movement = sin(i/100.)
                 cosine_movement = cos(i/100.)
