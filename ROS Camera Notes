@@ -1,0 +1,23 @@
+camerapreview ROS project
+
+1. Creating a ROS Package: http://wiki.ros.org/ROS/Tutorials/CreatingPackage
+- Create the new package in the Workspace
+  cd ~/catkin_ws/src/ROS
+- Create the package named "camerapreview"
+  catkin_create_pkg camerapreview std_msgs sensor_msgs rospy roscpp cv_bridge image_transport
+- Create launch directory
+  cd ~/catkin_ws/src/ROS/camerapreview
+  mkdir launch
+  cd launch
+- Create or copy campreview.launch file (e.g. http://wiki.ros.org/ROS/Tutorials/UsingRqtconsoleRoslaunch)
+
+2. Building a catkin workspace and sourcing the setup file
+- cd ~/catkin_ws
+- catkin_make
+
+3. Examining the Camera Preview app
+- roscore
+- cd ~/catkin_ws
+- source ./devel/setup.bash
+- roslaunch camerapreview campreview.launch
+- rosrun image_view image_view image:=/camera
