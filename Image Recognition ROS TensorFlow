@@ -1,0 +1,26 @@
+Installing TensorFlow on Ubuntu 16.04 LTS:
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.11.0-cp27-none-linux_x86_64.whl
+python tf_test.py
+
+Running Image Recognition App:
+
+Terminal1:
+- roscore
+
+Running Camera Topic (Terminal2):
+- cd ~/catkin_ws
+- source ./devel/setup.bash
+- roslaunch camerapreview campreview.launch
+
+Running Camera Preview (Terminal3):
+rostopic list -v
+- rosrun image_view image_view image:=/camera
+
+Running TensorFlow (Terminal4):
+#cd ~/catkin_ws/src/ROS/TensorFlow/rostensorflow
+- cd ~/TensorFlow/rostensorflow
+- export PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION=python
+- python image_recognition.py image:=/camera
+
+- rostopic echo /result
+
