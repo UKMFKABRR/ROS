@@ -1,0 +1,14 @@
+
+1.Install Velodyne binary packages on ROS Kinetic:
+sudo apt-get install ros-kinetic-velodyne-simulator
+
+or from source code:
+cd ~/catkin_ws/src/ROS
+git clone https://bitbucket.org/DataspeedInc/velodyne_simulator.git
+cd ~/catkin_ws
+catkin_make
+
+2. Start the Simulation:
+roslaunch velodyne_description example.launch
+
+
