@@ -1,0 +1,17 @@
+
+1.Install Velodyne binary packages on ROS Kinetic:
+sudo apt-get install ros-kinetic-hector-gazebo-plugins
+
+or from source code:
+cd ~/catkin_ws/src/ROS
+git clone https://github.com/tu-darmstadt-ros-pkg/hector_gazebo.git
+git clone https://github.com/tu-darmstadt-ros-pkg/hector_models.git 
+cd ~/catkin_ws
+catkin_make
+source ./devel/setup.bash
+
+2. Start the Simulation:
+download directory "sensor_sim_gazebo"
+roslaunch sensor_sim_gazebo laser.launch
+
+
